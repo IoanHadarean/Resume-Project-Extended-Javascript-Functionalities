@@ -5,7 +5,7 @@ function userInformationHTML(user) {
         
         //adding the link to the GitHub user 
         
-            (@<a href="${user.html_url}" target="_blank">${user.login}</a>
+            (@<a href="${user.html_url}" target="_blank">${user.login}</a>)
         </span>
     </h2>
     <div class="gh-content">
@@ -16,14 +16,12 @@ function userInformationHTML(user) {
         </div>
         <p>Followers: ${user.followers} - Following ${user.following} <br> Repos: ${user.public_repos}</p>
     </div>`;
-    
-    
 }
 
 
 function fetchGitHubInformation(event) {
     
-    let username = $("#gh-username").val();
+    var username = $("#gh-username").val();
     if(!username) {
        $("#gh-user-data").html(`<h2>Please enter a GitHub username</h2>`);
        return;
@@ -37,7 +35,7 @@ function fetchGitHubInformation(event) {
         $.getJSON(`https://api.github.com/users/${username}`)
         ).then(
             function(response) {
-               let userData = response; 
+               var userData = response; 
                $("#gh-user-data").html(userInformationHTML(userData))
             }, function(errorResponse) {
                 if(errorResponse.status === 404) {
@@ -45,7 +43,7 @@ function fetchGitHubInformation(event) {
                         `<h2>No info found for user ${username}</h2>`);
                 } else {
                     console.log(errorResponse);
-                    $("#gh-user-data").html(`<h2>Erro: ${errorResponse.errorJSON.message}</h2>`);
+                    $("#gh-user-data").html(`<h2>Error: ${errorResponse.errorJSON.message}</h2>`);
                 }
             });
 }
