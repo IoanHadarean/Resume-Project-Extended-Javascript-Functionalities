@@ -1,6 +1,6 @@
 function userInformationHTML(user) {
     return `
-    <h2>${$user.name}
+    <h2>${user.name}
         <span class="small-name">
         
         //adding the link to the GitHub user 
